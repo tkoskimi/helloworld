@@ -9,7 +9,7 @@ define( [
 	"use strict";
 
 	/**
-	 * Controls the application routes.
+	 * Controls the routes of this application.
 	 *
 	 * @constructor
 	 * @alias AppController
@@ -17,8 +17,7 @@ define( [
 	 */
 	var AppController = {
 		/**
-		 * Initializes the controller.
-		 *
+		 * @override
 		 * @param {Object} [options] Marionette.Controller options
 		 * @see http://marionettejs.com/docs/v2.4.1/marionette.controller.html
 		 */
