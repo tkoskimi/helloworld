@@ -1,9 +1,13 @@
 # The path of the JavaScript source code files
 JS_SRC = $(wildcard dev/html/js/)
+# The path of the JavaScript unit test files
+JS_SRC_UNIT_TEST = $(wildcard test/unit/html/js/)
+# The path of the JavaScript functional test files
+JS_SRC_FUNC_TEST = $(wildcard test/functional/html/js/)
 # JSHint
-JSHINT = jshint --config .jshintrc $(JS_SRC)
+JSHINT = jshint --config .jshintrc
 # JSCS
-JSCS = jscs $(JS_SRC) --preset=jquery
+JSCS = jscs --preset=jquery
 # JSDoc
 JSDOC = jsdoc --verbose -r -d "./doc/js" $(JS_SRC) "./doc/overview.md"
 
@@ -34,10 +38,16 @@ build_paths:
 jsdoc:
 	$(JSDOC)
 
+test: clean build_paths
+	@echo ""
+	@echo "## TEST ##"
+	$(JSHINT) $(JS_SRC_UNIT_TEST)
+	$(JSCS) $(JS_SRC_UNIT_TEST)
+
 build: clean build_paths
 	echo $(JS_SRC)
-	$(JSHINT)
-	$(JSCS)
+	$(JSHINT) $(JS_SRC)
+	$(JSCS) $(JS_SRC)
 
 	cp "./dev/html/index.html" "./build/dev/html"
 	cp -r "./dev/html/css" "./build/dev/html/"

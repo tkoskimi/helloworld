@@ -84,7 +84,9 @@
 
     // Custom Globals
     "globals"       : {
-            "require"   : true,
-            "define"    : true
+            "require"   : true, // require.js
+            "define"    : true,
+            "describe"  : true, // Mocha
+            "it"        : true
     }        // additional predefined global variables
 }
