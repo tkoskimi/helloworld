@@ -1,9 +1,7 @@
 # The path of the JavaScript source code files
 JS_SRC = $(wildcard dev/html/js/)
 # The path of the JavaScript unit test files
-JS_SRC_UNIT_TEST = $(wildcard test/unit/html/js/)
-# The path of the JavaScript functional test files
-JS_SRC_FUNC_TEST = $(wildcard test/functional/html/js/)
+JS_SRC_UNIT_TEST = $(wildcard test/html/js/)
 # JSHint
 JSHINT = jshint --config .jshintrc
 # JSCS
@@ -35,14 +33,26 @@ build_paths:
 	mkdir "./build/dev/src"
 	mkdir "./dist"
 
+test_paths:
+	@echo ""
+	@echo "## TEST PATHS ##"
+	mkdir "./build/test"
+	mkdir "./build/test/html"
+	mkdir "./build/test/html/js"
+
 jsdoc:
 	$(JSDOC)
 
-test: clean build_paths
+test: clean build_paths build test_paths
 	@echo ""
 	@echo "## TEST ##"
 	$(JSHINT) $(JS_SRC_UNIT_TEST)
 	$(JSCS) $(JS_SRC_UNIT_TEST)
+
+	cp -r "./test/html/css" "./build/dev/html/"
+	cp -r "./test/html/libs" "./build/dev/html/"
+	cp -r "./test/html/js" "./build/test/html/"
+	cp "./test/html/test.html" "./build/dev/html/test.html"
 
 build: clean build_paths
 	echo $(JS_SRC)

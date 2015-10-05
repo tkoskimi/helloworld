@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8">
+        <title>Helloworld Unit Tests</title>
+        <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            // @todo List all test cases here.
+            var tests = [
+                "../../../test/html/js/app/AppController"
+            ];
+        </script>
+
+        <script src="libs/chai.js"></script>
+        <script src="libs/mocha.js"></script>
+        <script type="application/javascript" src="libs/require.js"></script>
+        <script type="application/javascript">
+            require( [ "js/main" ], function() {
+                mocha.setup('bdd');
+
+                // Execute the tests.
+                require( tests, function() {
+                    mocha.run();
+                } );
+            } );
+        </script>
+
+    </head>
+    <body>
+        <div id="mocha"></div>
+    </body>
+</html>

@@ -106,6 +106,25 @@ Unzip the file and pick the minified full version.
 
 Version: 1.4.13
 
+#### Mocha
+
+Mocha is a JavaScript test framework running on Node.js and the browser.
+
+Version: 2.3.3
+
+#### chai.js
+
+Assertion library.
+
+Version: 3.3.0
+
+#### Sinon.JS
+
+
+
+Version: 1.17.1
+
+
 <a name="architecture"></a>
 ------------
 Architecture
