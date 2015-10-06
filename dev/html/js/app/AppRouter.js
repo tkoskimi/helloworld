@@ -13,7 +13,8 @@ define( [ "marionette" ], function( Marionette ) {
 	 */
 	var AppRouter = {
 		appRoutes: {
-			"log": "doPrintLog"
+			"log": "doPrintLog",
+			"hello": "openHelloPage"
 		}
 	};
 

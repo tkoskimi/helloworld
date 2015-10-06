@@ -4,8 +4,10 @@
 define( [
 		"underscore",
 		"jquery",
-		"marionette"
-	], function( _, $, Marionette ) {
+		"marionette",
+		"App",
+		"widgets/hello/HelloController"
+	], function( _, $, Marionette, App, HelloController ) {
 	"use strict";
 
 	/**
@@ -23,6 +25,13 @@ define( [
 		 */
 		initialize: function() {
 			_.bindAll( this );
+		},
+
+		openHelloPage: function() {
+			new HelloController( {
+				bus: App.bus,
+				region: App.rootView.mainRegion
+			} );
 		},
 
 		/**

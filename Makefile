@@ -8,6 +8,8 @@ JSHINT = jshint --config .jshintrc
 JSCS = jscs --preset=jquery
 # JSDoc
 JSDOC = jsdoc --verbose -r -d "./doc/js" $(JS_SRC) "./doc/overview.md"
+# Compass. (No need for input parameters because compass reads config.rb.)
+CSS_COMPILE_DEV = compass compile
 
 ifeq ($(SERVER),)
 	SERVER = default
@@ -58,6 +60,7 @@ build: clean build_paths
 	echo $(JS_SRC)
 	$(JSHINT) $(JS_SRC)
 	$(JSCS) $(JS_SRC)
+	$(CSS_COMPILE_DEV)
 
 	cp "./dev/html/index.html" "./build/dev/html"
 	cp -r "./dev/html/css" "./build/dev/html/"

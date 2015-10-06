@@ -3,4 +3,6 @@ build/*
 dist/*
 doc/js/*
 target/*
+dev/html/.sass-cache
+.sass-cache
 helloworld.sublime-workspace

@@ -53,6 +53,17 @@ JSDoc is an API documentation generator for JavaScript. This document as well as
 ###### Installation
 `>npm install --global jsdoc`
 
+#### Compass
+Scss is an extension of CSS and the Compass is a Scss parser.
+
+To install the Compass, follow the [instructions](http://thesassway.com/beginner/getting-started-with-sass-and-compass).
+
+In this project, the Compass project was created with the following parameters:
+
+<code>
+	compass create --sass-dir="dev/html/scss" --css-dir="build/dev/html/css" --images-dir="build/dev/html/images" --javascript-dir="build/dev/html/js"
+</code>
+
 <a name="build"></a>
 -----
 Build
@@ -133,19 +144,18 @@ Architecture
 The architectural decisions. The widgets.
 
 #### Controllers
-The role of controllers in Marionette has been controversial. ([see](http://marionettejs.com/docs/v2.4.2/marionette.controller.html)). For example, they are not used as controllers in MVC sense in many cases. Hence, it was important task to define the meaning of the controllers.
+The role of controllers in Marionette has been controversial. ([see](http://marionettejs.com/docs/v2.4.2/marionette.controller.html)). For example, they are not used as controllers in MVC sense in many cases. Hence, it was important to clarify the concept.
 
-In this application, the controllers are the main objects of the widgets: The application constructs the widget by calling the constructor function of its controller and typically this is the only explicit call from the application to the widget. Hence, the controller must define its constructor in a very detailed manner. For example, the properties of the options object must be documented clearly.
+In this application, the controllers are the main objects of the widgets: The application constructs the widget by calling the constructor function of its controller and typically this is the only explicit call from the application to the widget. Hence, the controller must define its constructor in a very detailed manner, i.e the properties of the options parameter must be documented clearly. In addition, the controller is the place where the global API of the widget (global events) must be documented so that there is just one place in the documentation that explains how the widget is wired up. It is recommended that the global events are triggered from the controllers. However, it is sometimes more convenient to trigger the event somewhere else. Hence, this decision is left to the implementor. 
 
-In addition, the controller is the place where the global API of the widget must be documented so that there is just one place in the documentation that explains how the widget is wired up. It is recommended that the global events are triggered from the controllers. However, it is sometimes more convenient to trigger the event somewhere else. Hence, this decision is left to the implementor. 
+#### Widget
+The structure of the widget is as follows:
 
-#### Plug-in
-The structure of the plug-in is as follows:
-
-- locales must be in the folder
-- css
-- sass
-- code
+	* locales
+	* css ([project]/dev/html/css/widgets/[widget-name])
+	* scss ([project]/dev/html/scss/widgets/[widget-name])
+	* front-end code ([project]/dev/html/js/widgets/[widget-name])
+	* back-end code ([project]/dev/src/widgets/[widget-name])
 
 Plug-ins must be AMD compliant.
 
@@ -153,7 +163,13 @@ The "dev:null" must not be reserved by any widgets. It can be used as a global c
 
 The global configuration object is passed to the widgets. The local configuration files must be in the ./config folder. There are three targets dev, test and prod. The build system will choose the correct one and place it to ./config folder.
 
-Each widget must have a version. If the construction or the global API of the widget changes, the version must be changed as well.
+Each widget must have a version. If the construction or the global API of the widget changes, the major version must be changed as well.
+
+#### Integrating the widget to the application
+The check list:
+
+	* Import widget's scss file in [project]/dev/html/scss/main.scss
+	* Add test cases to [project]/test/html/js/test.html
 
 <a name="glossary"></a>
 --------
