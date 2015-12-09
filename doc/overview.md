@@ -1,5 +1,5 @@
-Simple Map for Kirkkohallitus
-=============================
+Simple Map
+==========
 
 *	[ToDo](#todo)
 *	[Build Requirements](#build-requirements)
